@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "food-app",
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    }
+  ]
+}
