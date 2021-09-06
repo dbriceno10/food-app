@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "set DEBUG=app:*&& nodemon index",
+    "start": "SET NODE_ENV=production & node index",
+    "prepare": "husky install",
+    "cover":"nyc npm run test",
+    "report": "nyc report --reporter=html &&  cd coverage && index.html"
   },
   "author": "Daniel Briceno <daniel.b100726@gmail.com>",
   "license": "ISC",
@@ -42,5 +46,8 @@
       "lib",
       "utils"
     ]
+  },
+  "dependencies": {
+    "mongoose": "^6.0.4"
   }
 }
