@@ -1,8 +1,12 @@
 {
   "version": 2,
   "name": "food-app",
-  "builds": [{ "src": "index.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    }
+  ],
   "env": {
     "MONGODB_URI": "@mongodb-uri"
   }
