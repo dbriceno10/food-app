@@ -1,15 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const plates = require('./routes/plates');
+const orders = require('./routes/orders');
 const app = express();
+// const router = express.Router();
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-app.get('*', (require, response) => {
-  //El manejador '*' en el get, quiere decir que va a estar manejando absolutamente cualquier ruta que le llegue
-  response.send('Hola Mundo, con base de datos');
-});
+app.use('/api/plates', plates); //Va a manejar mis rutas
+app.use('/api/orders', orders);
+// app.get('*', (request, response) => {
+//   //El manejador '*' en el get, quiere decir que va a estar manejando absolutamente cualquier ruta que le llegue
+//   response.send('Hola Mundo, con base de datos');
+// });
 
 module.exports = app;
