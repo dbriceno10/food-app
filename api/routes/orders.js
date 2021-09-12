@@ -19,8 +19,8 @@ router.post('/', (request, response) => {
 });
 
 router.put('/:id', (request, response) => {
-  Orders.findByIdAndUpdate(request.body.id, request.body).then((x) =>
-    response.status(204).send(x)
+  Orders.findByIdAndUpdate(request.params.id, request.body).then(() =>
+    response.sendStatus(204)
   );
 });
 

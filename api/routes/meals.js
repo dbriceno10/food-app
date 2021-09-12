@@ -20,8 +20,9 @@ router.post('/', (request, response) => {
 });
 
 router.put('/:id', (request, response) => {
-  Meals.findByIdAndUpdate(request.body.id, request.body).then((x) =>
-    response.status(204).send(x)
+  //Debemos recordar que el id lo vamos a pasar desde la url y no desde el body, por lo tanto va a salir desde los params
+  Meals.findByIdAndUpdate(request.params.id, request.body).then(() =>
+  response.sendStatus(204)
   );
 });
 
