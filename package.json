@@ -13,6 +13,7 @@
   "author": "Daniel Briceno <daniel.b100726@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "body-parser": "^1.19.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
