@@ -13,12 +13,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/api/meals', meals);
 app.use('/api/orders', orders);
 
-
-
-
-
-
-
 // app.get('*', (request, response) => {
 //   //El manejador '*' en el get, quiere decir que va a estar manejando absolutamente cualquier ruta que le llegue
 //   response.send('Hola Mundo, con base de datos');

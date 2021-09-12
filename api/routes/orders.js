@@ -1,26 +1,33 @@
 const express = require('express');
-
+const Orders = require('../models/Orders');
 const router = express.Router();
 
 router.get('/', (request, response) => {
-  response.send('Hola soy orders');
+  Orders.find()
+    .exec()
+    .then((x) => response.status(200).send(x));
 });
 
 router.get('/:id', (request, response) => {
-  response.send(request.params.id);
+  Orders.findById(request.params.id)
+    .exec()
+    .then((x) => response.status(200).send(x));
 });
 
 router.post('/', (request, response) => {
-  // request.body;
-  response.send('soy post');
+  Orders.create(request.body).then((x) => response.status(201).send(x));
 });
 
 router.put('/:id', (request, response) => {
-  response.send('soy put');
+  Orders.findByIdAndUpdate(request.body.id, request.body).then((x) =>
+    response.status(204).send(x)
+  );
 });
 
 router.delete('/:id', (request, response) => {
-  response.send('soy delete');
+  Orders.findOneAndDelete(request.params.id)
+    .exec()
+    .then(() => response.sendStatus(204));
 });
 
 module.exports = router;
