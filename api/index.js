@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const plates = require('./routes/plates');
+const meals = require('./routes/meals');
 const orders = require('./routes/orders');
 const app = express();
 // const router = express.Router();
@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 });
 
-app.use('/api/plates', plates);
+app.use('/api/meals', meals);
 app.use('/api/orders', orders);
 
 
