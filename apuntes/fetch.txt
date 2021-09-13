@@ -1,0 +1,14 @@
+const UrlApi = 'url';
+fetch(UrlApi, {
+  method: 'GET', //POST, PUT, DELETE
+  mode: 'cors',
+  cache: 'no-cache',
+  credentials: 'same-origin',
+  headers: {//las cabeceras (headers) son tipos de datos que podemos agregar con cada petición, se puede usar para especificar el tipo de dato que queremos de vuelta, o la cookie o seción que se está utilizando para enviar al servidor
+    'Content-Type': 'application/json'
+  },
+  redirect: 'follow',
+  body: JSON.stringify({ user: 'usuario', password: "contraseña" })
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data));
