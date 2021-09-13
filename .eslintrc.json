@@ -5,7 +5,8 @@
     },
     // Vamos a extender la configuración de eslint recomendada y vamos a usar
     // una configuración compatible con prettier.
-    "extends": ["eslint:recommended", "prettier"],
+    // "extends": ["eslint:recommended", "prettier"],
+    "extends": ["prettier"],
     "env": {
       // Vamos a usar variables de entorno de EcmaScript 6
     "es6": true,
