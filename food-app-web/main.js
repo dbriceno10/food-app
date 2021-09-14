@@ -10,10 +10,11 @@ const renderItem = (item) => {
   const element = stringToHTML(view);
 
   element.addEventListener('click', () => {
+    const mealsList = document.getElementById('meals-list');
+    //children nos regresa una colección de onjetos html, el cual se parece a un arreglo pero no lo es, se puede iterar (tiene índices). No tiene los métodos forEach y map
+    const arrayMealsList = Array.from(mealsList.children); //trasformamos a un arreglo
+    arrayMealsList.forEach((element) => element.classList.remove('selected'));
     element.classList.add('selected');
-    setTimeout(() => {
-      element.classList.remove('selected');
-    }, 1000);
   });
   return element;
 };
