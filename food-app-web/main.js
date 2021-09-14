@@ -1,3 +1,6 @@
+const UrlApiMeals = 'https://food-app-dbriceno10.vercel.app/api/meals';
+const UrlApiOrders = 'https://food-app-dbriceno10.vercel.app/api/orders';
+
 const stringToHTML = (string) => {
   const parser = new DOMParser();
   const document = parser.parseFromString(string, 'text/html');
@@ -20,8 +23,6 @@ const renderItem = (item) => {
   return element;
 };
 
-const UrlApi = 'https://food-app-dbriceno10.vercel.app/api/meals';
-
 window.onload = () => {
   const orderForm = document.getElementById('order');
   orderForm.onsubmit = (event) => {
@@ -41,9 +42,17 @@ window.onload = () => {
       meal_id: mealIdValue,
       user_id: 'id_de_prueba',
     };
+
+    fetch(UrlApiOrders, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(order),
+    }).then((element) => console.log(element));
   };
 
-  fetch(UrlApi)
+  fetch(UrlApiMeals)
     .then((response) => response.json())
     .then((data) => {
       const mealsList = document.getElementById('meals-list');
