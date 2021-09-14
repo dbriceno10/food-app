@@ -15,7 +15,7 @@ const renderItem = (item) => {
     const arrayMealsList = Array.from(mealsList.children); //trasformamos a un arreglo
     arrayMealsList.forEach((element) => element.classList.remove('selected'));
     element.classList.add('selected');
-    const mealsIdImput = document.getElementById('meals-id'); //el input de tipo hidden lo vamos a utilizar para capturar el id de la orden
+    const mealsIdImput = document.getElementById('meals-id'); //el input de tipo hidden lo vamos a utilizar para capturar el id del meal
     mealsIdImput.value = item._id;
   });
   return element;
