@@ -1,5 +1,6 @@
 const UrlApiMeals = 'https://food-app-dbriceno10.vercel.app/api/meals';
 const UrlApiOrders = 'https://food-app-dbriceno10.vercel.app/api/orders';
+let mealsState = [];
 
 const stringToHTML = (string) => {
   const parser = new DOMParser();
@@ -12,7 +13,7 @@ const addClickEventToMeals = (element, meal) => {
   element.addEventListener('click', () => {
     const mealsList = document.getElementById('meals-list');
     //children nos regresa una colección de onjetos html, el cual se parece a un arreglo pero no lo es, se puede iterar (tiene índices). No tiene los métodos forEach y map
-    const arrayMealsList = Array.from(mealsList.children); //trasformamos a un arreglo
+    const arrayMealsList = Array.from(mealsList.children); //trasformamos en un arreglo
     arrayMealsList.forEach((element) => element.classList.remove('selected'));
     element.classList.add('selected');
     const mealsIdImput = document.getElementById('meals-id'); //el input de tipo hidden lo vamos a utilizar para capturar el id del meal
@@ -38,6 +39,8 @@ window.onload = () => {
   const orderForm = document.getElementById('order');
   orderForm.onsubmit = (event) => {
     event.preventDefault();
+    const submit = document.getElementById('submit');
+    submit.setAttribute('disabled', true); //luego de hacer el submit, bloqueamos el botón mientras se agrega el elemento
     const mealId = document.getElementById('meals-id');
     const mealIdValue = mealId.value;
     if (!mealIdValue) {
@@ -60,12 +63,20 @@ window.onload = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(order),
-    }).then((element) => console.log(element));
+    })
+      .then((element) => element.json())
+      .then((response) => {
+        const renderedOrder = renderOrder(response, mealsState);
+        const ordersList = document.getElementById('orders-list');
+        ordersList.appendChild(renderedOrder);
+        submit.removeAttribute('disabled');
+      });
   };
 
   fetch(UrlApiMeals)
     .then((response) => response.json())
     .then((dataMeals) => {
+      mealsState = dataMeals;
       const mealsList = document.getElementById('meals-list');
       const submit = document.getElementById('submit');
       const listMealsItems = dataMeals.map(renderMeals);
