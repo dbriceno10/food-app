@@ -8,7 +8,13 @@ const stringToHTML = (string) => {
 const renderItem = (item) => {
   const view = `<li data-id=${item._id}>${item.name}</li>`;
   const element = stringToHTML(view);
-  console.log(element);
+
+  element.addEventListener('click', () => {
+    element.classList.add('selected');
+    setTimeout(() => {
+      element.classList.remove('selected');
+    }, 1000);
+  });
   return element;
 };
 
@@ -19,7 +25,7 @@ fetch(UrlApi)
     const mealsList = document.getElementById('meals-list');
     const submit = document.getElementById('submit');
     const listItems = data.map(renderItem);
-    mealsList.removeChild(mealsList.firstElementChild);//Remove child recibe como argumento un elemento html, le pasamos el primer elemento hijo (Loading...) en este caso para eliminarlo
+    mealsList.removeChild(mealsList.firstElementChild); //Remove child recibe como argumento un elemento html, le pasamos el primer elemento hijo (Loading...) en este caso para eliminarlo
     listItems.forEach((element) => mealsList.appendChild(element));
     submit.removeAttribute('disabled');
   });
