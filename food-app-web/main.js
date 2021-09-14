@@ -6,7 +6,6 @@ const stringToHTML = (string) => {
   return child;
 };
 const renderItem = (item) => {
-  // return `<li>${item}</li>`;
   const view = `<li data-id=${item._id}>${item.name}</li>`;
   const element = stringToHTML(view);
   console.log(element);
@@ -19,8 +18,8 @@ fetch(UrlApi)
   .then((data) => {
     const mealsList = document.getElementById('meals-list');
     const submit = document.getElementById('submit');
-    // const template = data.map(element => renderItem(element.name)).join('');
     const listItems = data.map(renderItem);
+    mealsList.removeChild(mealsList.firstElementChild);//Remove child recibe como argumento un elemento html, le pasamos el primer elemento hijo (Loading...) en este caso para eliminarlo
     listItems.forEach((element) => mealsList.appendChild(element));
     submit.removeAttribute('disabled');
   });
