@@ -28,7 +28,23 @@ router.post('/register', (request, response) => {
 });
 
 router.post('/login', (request, response) => {
-  response.send('Soy login');
+  const { email, password } = request.body;
+  useres
+    .findOne({ email })
+    .exec()
+    .then((user) => {
+      if (!user) {
+        return response.send('usuario y/o contraseña incorrencta');
+      }
+      crypto.pbkdf2(password, user.salt, 10000, 64, 'sha1', (error, key) => {
+        const encryptedPassword = key.toString('base64');
+        if (user.password === encryptedPassword) {
+          const token = signToken(user._id); //"firma el token", toma ese id y lo encripta
+          return response.send({ token });
+        }
+        response.send('usuario y/o contraseña incorrecta');
+      });
+    });
 });
 
 module.exports = router;
