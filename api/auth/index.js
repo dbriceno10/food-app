@@ -3,8 +3,7 @@
 const jwt = require('jsonwebtoken');
 const Users = require('../models/Users');
 
-// const isAuthenticated = (request, response, next) => {
-module.exports = (request, response, next) => {
+const isAuthenticated = (request, response, next) => {
   //Cambiamos a exportar por defecto
   const token = request.header.authorization; //el token se suele sacar dentro de la cabecera autorization, pero podría salir de otro lugar, dependiendo del caso
   if (!token) {
@@ -21,4 +20,14 @@ module.exports = (request, response, next) => {
   });
 };
 
-// module.exports = isAuthenticated
+const hasRole = role => (request, response, next) => {
+  if (request.user.role === role) {
+    return next();
+  }
+  response.sendStatus(403);
+};
+
+module.exports = {
+  isAuthenticated,
+  hasRole,
+};
