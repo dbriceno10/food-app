@@ -2,6 +2,7 @@ const UrlApiMeals = 'https://food-app-dbriceno10.vercel.app/api/meals';
 const UrlApiOrders = 'https://food-app-dbriceno10.vercel.app/api/orders';
 const UrlApiRegister =
   'https://food-app-dbriceno10.vercel.app/api/auth/register';
+const UrlApiLogin = 'https://food-app-dbriceno10.vercel.app/api/auth/login';
 let mealsState = [];
 
 let route = 'login'; //login, register,orders
@@ -104,17 +105,25 @@ const initializeData = () => {
 };
 
 window.onload = () => {
-  //Creando un usuario usando fetch
-  fetch(UrlApiRegister, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: 'prueba-fetch@test.com',
-      password: 'password',
-    }),
-  });
+  const loginForm = document.getElementById('login-form');
+  loginForm.onsubmit = (event) => {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    // Creando un usuario / iniciando sección usando fetch
+    fetch(UrlApiLogin, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }), //Más simple gracias a la desestructuración
+      // body: JSON.stringify({
+      //   email: email,
+      //   password: password,
+      // }),
+    });
+  };
+
   // initializeForm();
   // initializeData();
 };
