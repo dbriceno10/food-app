@@ -2,6 +2,9 @@ const express = require('express');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const Users = require('../models/Users');
+//Vamos a crear un nuevo endpoint que le va a permitir al usuario poder obtener los datos de el mismo.
+const { isAuthenticated } = require('../auth'); //En este caso no necesitamos indicar el archivo index en el que se encuentra alojado
+
 const router = express.Router();
 
 const signToken = (_id) => {
@@ -51,6 +54,10 @@ router.post('/login', (request, response) => {
         response.send('usuario y/o contraseña incorrecta');
       });
     });
+});
+
+router.get('/me', isAuthenticated, (request, response) => {
+  response.send(request.user); //Esto va a enviar el usuario completo
 });
 
 module.exports = router;
