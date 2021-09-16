@@ -58,7 +58,8 @@ ul {
   max-width: 300px;
   margin: 0 auto;
   margin-top: 100px;
-  padding: 20px;
+  padding: 15px;
+  padding-bottom: 30px;
 }
 
 .login-form p {
@@ -88,11 +89,26 @@ form input {
   /* width: calc(100% - 4px); */
 }
 
-/* Esta regla es para eliminar un elemento div que está metiendo el live server */
-#scrnli_recorder_root {
-  display: none;
-}
 
 .block {
   width: calc(100% - 4px);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Esta regla es para eliminar un elemento div que está metiendo el live server */
+#scrnli_recorder_root {
+  display: none;
 }

@@ -2,7 +2,7 @@ const UrlApiMeals = 'https://food-app-dbriceno10.vercel.app/api/meals';
 const UrlApiOrders = 'https://food-app-dbriceno10.vercel.app/api/orders';
 let mealsState = [];
 
-let route = "login"//login, register,orders
+let route = 'login'; //login, register,orders
 
 const stringToHTML = (string) => {
   const parser = new DOMParser();
@@ -52,7 +52,7 @@ const initializeForm = () => {
       //   icon: 'error',
       // });
       // return errorMessage;
-      return alert("Debe seleccionar un plato")
+      return alert('Debe seleccionar un plato');
     }
     const order = {
       meal_id: mealIdValue,
