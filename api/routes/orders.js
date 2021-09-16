@@ -1,6 +1,6 @@
 const express = require('express');
 const Orders = require('../models/Orders');
-const { isAuthenticated, hasRole } = require('../auth/index');
+const { isAuthenticated, hasRoles } = require('../auth/index');
 
 const router = express.Router();
 
@@ -24,12 +24,17 @@ router.post('/', isAuthenticated, (request, response) => {
   );
 });
 
-// router.put('/:id', isAuthenticated, hasRole("user"), (request, response) => {//hasRole siempre debe de ir luego de isAuthenticated
-router.put('/:id', isAuthenticated, (request, response) => {
-  Orders.findByIdAndUpdate(request.params.id, request.body).then(() =>
-    response.sendStatus(204)
-  );
-});
+router.put(
+  '/:id',
+  isAuthenticated,
+  hasRoles(['admin', 'user']),
+  (request, response) => {
+    //hasRoles siempre debe de ir luego de isAuthenticated
+    Orders.findByIdAndUpdate(request.params.id, request.body).then(() =>
+      response.sendStatus(204)
+    );
+  }
+);
 
 router.delete('/:id', isAuthenticated, (request, response) => {
   Orders.findOneAndDelete(request.params.id)

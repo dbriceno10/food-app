@@ -20,8 +20,9 @@ const isAuthenticated = (request, response, next) => {
   });
 };
 
-const hasRole = role => (request, response, next) => {
-  if (request.user.role === role) {
+//En el caso de que necesitemos manejar más de un tipo de rol para una ruta, por ejemplo que puedan ingresar los administradores y también los usuarios, podemos modificar la función de hasRole a hasRoles, en lugar de pasarle un solo role, podemos pasarle un arreglo de roles
+const hasRoles = (roles) => (request, response, next) => {
+  if (roles.indexOf(request.user.role) > -1) {
     return next();
   }
   response.sendStatus(403);
@@ -29,5 +30,5 @@ const hasRole = role => (request, response, next) => {
 
 module.exports = {
   isAuthenticated,
-  hasRole,
+  hasRoles,
 };
