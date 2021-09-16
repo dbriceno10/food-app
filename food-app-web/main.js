@@ -1,5 +1,7 @@
 const UrlApiMeals = 'https://food-app-dbriceno10.vercel.app/api/meals';
 const UrlApiOrders = 'https://food-app-dbriceno10.vercel.app/api/orders';
+const UrlApiRegister =
+  'https://food-app-dbriceno10.vercel.app/api/auth/register';
 let mealsState = [];
 
 let route = 'login'; //login, register,orders
@@ -46,13 +48,13 @@ const initializeForm = () => {
     const mealId = document.getElementById('meals-id');
     const mealIdValue = mealId.value;
     if (!mealIdValue) {
-      // const errorMessage = swal({
-      //   title: 'Error',
-      //   text: 'Debe seleccionar un plato',
-      //   icon: 'error',
-      // });
-      // return errorMessage;
-      return alert('Debe seleccionar un plato');
+      const errorMessage = swal({
+        title: 'Error',
+        text: 'Debe seleccionar un plato',
+        icon: 'error',
+      });
+      return errorMessage;
+      // return alert('Debe seleccionar un plato');
     }
     const order = {
       meal_id: mealIdValue,
@@ -102,6 +104,17 @@ const initializeData = () => {
 };
 
 window.onload = () => {
+  //Creando un usuario usando fetch
+  fetch(UrlApiRegister, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: 'prueba-fetch@test.com',
+      password: 'password',
+    }),
+  });
   // initializeForm();
   // initializeData();
 };
