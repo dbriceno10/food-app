@@ -2,6 +2,8 @@ const UrlApiMeals = 'https://food-app-dbriceno10.vercel.app/api/meals';
 const UrlApiOrders = 'https://food-app-dbriceno10.vercel.app/api/orders';
 let mealsState = [];
 
+let route = "login"//login, register,orders
+
 const stringToHTML = (string) => {
   const parser = new DOMParser();
   const document = parser.parseFromString(string, 'text/html');
@@ -100,6 +102,6 @@ const initializeData = () => {
 };
 
 window.onload = () => {
-  initializeForm();
-  initializeData();
+  // initializeForm();
+  // initializeData();
 };

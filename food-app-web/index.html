@@ -8,20 +8,23 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="meals">
-      <ul id="meals-list">
-        <p>Loading...</p>
-      </ul>
-      <form id="order" action="">
-        <input type="hidden" name="" id="meals-id" />
-        <input id="submit" type="submit" value="Submit" disabled />
-      </form>
-    </div>
-    <div id="orders">
-      <ul id="orders-list">
-        <p>Loading...</p>
-      </ul>
-    </div>
+    <!-- Todo lo que se encuentre dentro de una etiqueta template, no se va a mostrar, a menos que se cumpla una condición para que así sea, esto se utiliza para crear vistas o plantillas -->
+    <template id="orders-view">
+      <div id="meals">
+        <ul id="meals-list">
+          <p>Loading...</p>
+        </ul>
+        <form id="order" action="">
+          <input type="hidden" name="" id="meals-id" />
+          <input id="submit" type="submit" value="Submit" disabled />
+        </form>
+      </div>
+      <div id="orders">
+        <ul id="orders-list">
+          <p>Loading...</p>
+        </ul>
+      </div>
+    </span>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./main.js"></script>
   </body>
