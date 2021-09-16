@@ -35,7 +35,7 @@ const renderOrder = (order, meals) => {
   return element;
 };
 
-window.onload = () => {
+const initializeForm = () => {
   const orderForm = document.getElementById('order');
   orderForm.onsubmit = (event) => {
     event.preventDefault();
@@ -72,7 +72,9 @@ window.onload = () => {
         submit.removeAttribute('disabled');
       });
   };
+};
 
+const initializeData = () => {
   fetch(UrlApiMeals)
     .then((response) => response.json())
     .then((dataMeals) => {
@@ -95,4 +97,9 @@ window.onload = () => {
           console.log(dataOrders);
         });
     });
+};
+
+window.onload = () => {
+  initializeForm();
+  initializeData();
 };

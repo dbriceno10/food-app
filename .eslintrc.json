@@ -1,13 +1,14 @@
 {
   // Todo mi código va a usar la versión de Ecmascript 2018 en adelante
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2021//Cambiamos de 2018 a 2021
   },
   // Vamos a extender la configuración de eslint recomendada y vamos a usar
   // una configuración compatible con prettier.
   "extends": [
     "eslint:recommended",
-    "prettier"
+    "prettier",
+    "standard"
   ],
   // "extends": ["prettier"],
   "env": {
@@ -23,6 +24,6 @@
   "rules": {
     // La regla de no-console: no va ha ser un error si no un warning 
     // porque aveces necesitamos dejarlo
-    // "no-console": "warn"
+    "no-console": "warn"
   }
 }
