@@ -55,7 +55,7 @@ ul {
 }
 
 .form-main {
-  max-width: 450px;
+  max-width: 300px;
   margin: 0 auto;
   margin-top: 100px;
   padding: 20px;
@@ -69,21 +69,30 @@ ul {
 form input {
   width: calc(100% - 10px);
   height: 24px;
-  padding-left:5px ;
+  padding-left: 5px;
   background-color: #dedede;
   border: none;
   border-radius: 8px;
   color: #000;
 }
 
-
-
-
-
-
-
+.btn {
+  border: none;
+  padding: 10px 15px;
+  background-color: #2a91bd;
+  /* background-color: #2280cc; */
+  border-radius: 8px;
+  color: #fff;
+  margin-top: 15px;
+  /* width: 100%; */
+  /* width: calc(100% - 4px); */
+}
 
 /* Esta regla es para eliminar un elemento div que está metiendo el live server */
 #scrnli_recorder_root {
   display: none;
+}
+
+.block {
+  width: calc(100% - 4px);
 }
