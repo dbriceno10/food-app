@@ -46,13 +46,13 @@ const initializeForm = () => {
     const mealId = document.getElementById('meals-id');
     const mealIdValue = mealId.value;
     if (!mealIdValue) {
-      const errorMessage = swal({
-        title: 'Error',
-        text: 'Debe seleccionar un plato',
-        icon: 'error',
-      });
-      return errorMessage;
-      // alert("Debe seleccionar un plato")
+      // const errorMessage = swal({
+      //   title: 'Error',
+      //   text: 'Debe seleccionar un plato',
+      //   icon: 'error',
+      // });
+      // return errorMessage;
+      return alert("Debe seleccionar un plato")
     }
     const order = {
       meal_id: mealIdValue,

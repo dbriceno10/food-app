@@ -4,10 +4,11 @@ body {
 }
 
 body div {
-  flex-grow: 1;
+  /* flex-grow: 1; */
   background-color: #fff;
-  /* margin: 5px; */
-  /* margin-top: 0; */
+  margin: 5px;
+  margin-top: 0;
+  padding: 10px;
 }
 
 /* body div:first-child {
@@ -19,7 +20,7 @@ body div {
 }
 
 ul {
-  list-style: none;
+  list-style-type: none;
 }
 
 #submit {
@@ -30,7 +31,7 @@ ul {
   border: solid 0px;
   border-radius: 25px;
   margin: 15px;
-  margin-left: 30px;
+  margin-left: 38px;
 }
 
 #submit:disabled {
@@ -51,4 +52,11 @@ ul {
 
 .selected {
   background-color: #eee;
+}
+
+.form-main {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 20px;
 }
