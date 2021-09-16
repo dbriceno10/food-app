@@ -1,7 +1,14 @@
 const express = require('express');
-const crypto = require('crypto'); //esta libreria es nativa de node
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 const Users = require('../models/Users');
 const router = express.Router();
+
+const signToken = (_id) => {
+  return jwt.sign({ _id }, 'my-secret', {
+    expiresIn: 60 * 60 * 24 * 365, //esto es un objeto de configuración, se encarga de dar el tiempo de duración del token segundos * minutos * horas * dias
+  });
+};
 
 router.post('/register', (request, response) => {
   const { email, password } = request.body;
@@ -18,7 +25,7 @@ router.post('/register', (request, response) => {
           Users.create({
             email,
             password: encryptedPassword,
-            salt: newsalt,
+            salt: newSalt,
           }).then(() => {
             response.send('usuario creado con éxito');
           });
@@ -29,8 +36,7 @@ router.post('/register', (request, response) => {
 
 router.post('/login', (request, response) => {
   const { email, password } = request.body;
-  useres
-    .findOne({ email })
+  Users.findOne({ email })
     .exec()
     .then((user) => {
       if (!user) {
