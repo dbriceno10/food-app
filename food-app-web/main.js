@@ -107,9 +107,17 @@ const initializeData = () => {
 const renderApp = () => {
   const token = localStorage.getItem('token');
   if (token) {
-    const ordersView = document.getElementById('orders-view');
-    document.getElementsByTagName('body')[0].innerHTML = ordersView.innerHTML; //nos va a devolver un arreglo(de un elemento en este caso) cuando nosotros le pasemos "body"
+    return renderOrders();
   }
+  renderLogin();
+};
+
+const renderOrders = () => {
+  //Necesitamos ir a buscar nuestra plantilla i asignarla al body
+  const ordersView = document.getElementById('orders-view');
+  document.getElementsByTagName('body')[0].innerHTML = ordersView.innerHTML; //nos va a devolver un arreglo(de un elemento en este caso) cuando nosotros le pasemos "body"
+  initializeForm();
+  initializeData();
 };
 
 const renderLogin = () => {
@@ -137,6 +145,7 @@ const renderLogin = () => {
       .then((response) => {
         localStorage.setItem('token', response.token); //Obtemos el token y lo guardamos en el localStorage, con esto podemos revisar cuando refrescando la aplicación es si el usuario ha iniciado sección o no. Si el usario ha iniciado sección esto lo vamos a saber ya que este valor va a tener un string guardado
         route = 'orders';
+        renderOrders();
       });
   };
 };
