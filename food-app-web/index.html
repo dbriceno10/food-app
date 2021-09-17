@@ -9,24 +9,25 @@
   </head>
 
   <body>
-    <div class="form-main">
-      <p class="form-title">Login</p>
-      <form action="" id="login-form" class="login-form">
-        <div>
-          <p>Email</p>
-          <input id="email" type="text" placeholder="Email" />
-        </div>
-        <div>
-          <p>Password</p>
-          <input id="password" type="password" placeholder="Password" />
-        </div>
-        <div>
-          <button class="btn block">Send</button>
-          <!-- <input type="submit" value="Send" /> -->
-        </div>
-      </form>
-    </div>
-
+    <template id="login-template">
+      <div class="form-main">
+        <p class="form-title">Login</p>
+        <form action="" id="login-form" class="login-form">
+          <div>
+            <p>Email</p>
+            <input id="email" type="text" placeholder="Email" />
+          </div>
+          <div>
+            <p>Password</p>
+            <input id="password" type="password" placeholder="Password" />
+          </div>
+          <div>
+            <button class="btn block">Send</button>
+            <!-- <input type="submit" value="Send" /> -->
+          </div>
+        </form>
+      </div>
+    </template>
     <!-- Todo lo que se encuentre dentro de una etiqueta template, no se va a mostrar, a menos que se cumpla una condición para que así sea, esto se utiliza para crear vistas o plantillas -->
     <template id="orders-view">
       <div id="meals">
@@ -36,9 +37,7 @@
         <form id="order" action="">
           <input type="hidden" name="" id="meals-id" />
           <!-- <input id="submit" type="submit" value="Submit" disabled /> -->
-          <button id="submit" disabled >
-            Send
-          </button>
+          <button id="submit" disabled>Send</button>
         </form>
       </div>
       <div id="orders">

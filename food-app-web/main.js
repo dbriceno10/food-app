@@ -106,17 +106,22 @@ const initializeData = () => {
 
 const renderApp = () => {
   const token = localStorage.getItem('token');
-  console.log(`token: ${token}`);
+  if (token) {
+    const ordersView = document.getElementById('orders-view');
+    document.getElementsByTagName('body')[0].innerHTML = ordersView.innerHTML; //nos va a devolver un arreglo(de un elemento en este caso) cuando nosotros le pasemos "body"
+  }
 };
 
-window.onload = () => {
-  renderApp();
+const renderLogin = () => {
+  const loginTemplate = document.getElementById('login-template');
+  document.getElementsByTagName('body')[0].innerHTML = loginTemplate.innerHTML;
+
   const loginForm = document.getElementById('login-form');
   loginForm.onsubmit = (event) => {
     event.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    // Creando un usuario / iniciando sección usando fetch
+
     fetch(UrlApiLogin, {
       method: 'POST',
       headers: {
@@ -134,7 +139,10 @@ window.onload = () => {
         route = 'orders';
       });
   };
+};
 
+window.onload = () => {
+  renderApp();
   // initializeForm();
   // initializeData();
 };
