@@ -3,6 +3,7 @@ const UrlApiOrders = 'https://food-app-dbriceno10.vercel.app/api/orders';
 const UrlApiRegister =
   'https://food-app-dbriceno10.vercel.app/api/auth/register';
 const UrlApiLogin = 'https://food-app-dbriceno10.vercel.app/api/auth/login';
+const UrlApiMe = 'https://food-app-dbriceno10.vercel.app/api/auth/me';
 let mealsState = [];
 
 let route = 'login'; //login, register,orders
@@ -140,8 +141,20 @@ const renderLogin = () => {
       .then((response) => {
         localStorage.setItem('token', response.token);
         route = 'orders';
-        renderOrders();
-      });
+        return response.token; //Ahora en nuestro siguiente .then() encadenado vamos a tener acceso a nuestro token sin necesidad de acceder a localStorage
+      })
+      .then((token) => {
+        //En esta siguiente llamada, el parámetro que pasemos es nuestro token
+        return fetch(UrlApiMe, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: token,
+          },
+        });
+      })
+      .then((element) => element.json())
+      .then((user) => console.log(user));
   };
 };
 

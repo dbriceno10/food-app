@@ -5,7 +5,7 @@ const Users = require('../models/Users');
 
 const isAuthenticated = (request, response, next) => {
   //Cambiamos a exportar por defecto
-  const token = request.header.authorization; //el token se suele sacar dentro de la cabecera autorization, pero podría salir de otro lugar, dependiendo del caso
+  const token = request.headers.authorization; //el token se suele sacar dentro de la cabecera autorization, pero podría salir de otro lugar, dependiendo del caso
   if (!token) {
     return response.sendStatus(403);
   }
