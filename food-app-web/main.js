@@ -120,7 +120,7 @@ const renderOrders = () => {
 };
 
 const renderLogin = () => {
-  const loginTemplate = document.getElementById('login-template');
+  loginTemplate = document.getElementById('login-template');
   document.getElementById('app').innerHTML = loginTemplate.innerHTML;
 
   const loginForm = document.getElementById('login-form');
