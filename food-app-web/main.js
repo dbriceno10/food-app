@@ -115,14 +115,16 @@ const renderApp = () => {
 const renderOrders = () => {
   //Necesitamos ir a buscar nuestra plantilla i asignarla al body
   const ordersView = document.getElementById('orders-view');
-  document.getElementsByTagName('body')[0].innerHTML = ordersView.innerHTML; //nos va a devolver un arreglo(de un elemento en este caso) cuando nosotros le pasemos "body"
+  document.getElementsById('app').innerHTML = ordersView.innerHTML;
+  // document.getElementsByTagName('body')[0].innerHTML = ordersView.innerHTML; //nos va a devolver un arreglo(de un elemento en este caso) cuando nosotros le pasemos "body"
   initializeForm();
   initializeData();
 };
 
 const renderLogin = () => {
   const loginTemplate = document.getElementById('login-template');
-  document.getElementsByTagName('body')[0].innerHTML = loginTemplate.innerHTML;
+  document.getElementsById('app').innerHTML = loginTemplate.innerHTML;
+  // document.getElementsByTagName('body')[0].innerHTML = loginTemplate.innerHTML;
 
   const loginForm = document.getElementById('login-form');
   loginForm.onsubmit = (event) => {
@@ -152,6 +154,4 @@ const renderLogin = () => {
 
 window.onload = () => {
   renderApp();
-  // initializeForm();
-  // initializeData();
 };
