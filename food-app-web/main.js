@@ -104,7 +104,13 @@ const initializeData = () => {
     });
 };
 
+const renderApp = () => {
+  const token = localStorage.getItem('token');
+  console.log(`token: ${token}`);
+};
+
 window.onload = () => {
+  renderApp();
   const loginForm = document.getElementById('login-form');
   loginForm.onsubmit = (event) => {
     event.preventDefault();
@@ -121,7 +127,12 @@ window.onload = () => {
       //   email: email,
       //   password: password,
       // }),
-    });
+    })
+      .then((element) => element.json())
+      .then((response) => {
+        localStorage.setItem('token', response.token); //Obtemos el token y lo guardamos en el localStorage, con esto podemos revisar cuando refrescando la aplicación es si el usuario ha iniciado sección o no. Si el usario ha iniciado sección esto lo vamos a saber ya que este valor va a tener un string guardado
+        route = 'orders';
+      });
   };
 
   // initializeForm();
