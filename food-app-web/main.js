@@ -99,7 +99,7 @@ const initializeData = () => {
           );
           ordersList.removeChild(ordersList.firstElementChild);
           listOrders.forEach((element) => ordersList.appendChild(element));
-          console.log(dataOrders);
+          // console.log(dataOrders);
         });
     });
 };
@@ -113,18 +113,15 @@ const renderApp = () => {
 };
 
 const renderOrders = () => {
-  //Necesitamos ir a buscar nuestra plantilla i asignarla al body
   const ordersView = document.getElementById('orders-view');
-  document.getElementsById('app').innerHTML = ordersView.innerHTML;
-  // document.getElementsByTagName('body')[0].innerHTML = ordersView.innerHTML; //nos va a devolver un arreglo(de un elemento en este caso) cuando nosotros le pasemos "body"
+  document.getElementById('app').innerHTML = ordersView.innerHTML;
   initializeForm();
   initializeData();
 };
 
 const renderLogin = () => {
   const loginTemplate = document.getElementById('login-template');
-  document.getElementsById('app').innerHTML = loginTemplate.innerHTML;
-  // document.getElementsByTagName('body')[0].innerHTML = loginTemplate.innerHTML;
+  document.getElementById('app').innerHTML = loginTemplate.innerHTML;
 
   const loginForm = document.getElementById('login-form');
   loginForm.onsubmit = (event) => {
@@ -137,15 +134,11 @@ const renderLogin = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }), //Más simple gracias a la desestructuración
-      // body: JSON.stringify({
-      //   email: email,
-      //   password: password,
-      // }),
+      body: JSON.stringify({ email, password }),
     })
       .then((element) => element.json())
       .then((response) => {
-        localStorage.setItem('token', response.token); //Obtemos el token y lo guardamos en el localStorage, con esto podemos revisar cuando refrescando la aplicación es si el usuario ha iniciado sección o no. Si el usario ha iniciado sección esto lo vamos a saber ya que este valor va a tener un string guardado
+        localStorage.setItem('token', response.token);
         route = 'orders';
         renderOrders();
       });

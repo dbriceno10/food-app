@@ -1,9 +1,14 @@
 body {
   background-color: #eee;
+}
+
+#app {
+  /*Ahora será app donde se rendericen los template, en lugar de body*/
   display: flex;
 }
 
-body div {
+#app div {
+  /*Ahora será app donde se rendericen los template, en lugar de body*/
   flex-grow: 1;
   background-color: #fff;
   margin: 5px;
@@ -58,7 +63,7 @@ ul {
   background-color: #eee;
 }
 
-.form-main {
+#app .form-main {
   max-width: 300px;
   margin: 0 auto;
   margin-top: 100px;
@@ -93,7 +98,6 @@ form input {
   /* width: calc(100% - 4px); */
 }
 
-
 .block {
   width: calc(100% - 4px);
 }
@@ -102,15 +106,6 @@ form input {
   text-align: center;
   font-size: 24px;
 }
-
-
-
-
-
-
-
-
-
 
 /* Esta regla es para eliminar un elemento div que está metiendo el live server */
 #scrnli_recorder_root {
