@@ -1,7 +1,6 @@
 const UrlApiMeals = 'https://food-app-dbriceno10.vercel.app/api/meals';
 const UrlApiOrders = 'https://food-app-dbriceno10.vercel.app/api/orders';
-const UrlApiRegister =
-  'https://food-app-dbriceno10.vercel.app/api/auth/register';
+const UrlApiRegister = 'https://food-app-dbriceno10.vercel.app/api/auth/register';
 const UrlApiLogin = 'https://food-app-dbriceno10.vercel.app/api/auth/login';
 const UrlApiMe = 'https://food-app-dbriceno10.vercel.app/api/auth/me';
 let mealsState = [];
