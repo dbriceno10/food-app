@@ -63,11 +63,12 @@ const initializeForm = () => {
       meal_id: mealIdValue,
       user_id: user._id,
     };
-
+    const token = localStorage.getItem('token');
     fetch(UrlApiOrders, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        authorization: token,
       },
       body: JSON.stringify(order),
     })
