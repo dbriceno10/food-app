@@ -1,10 +1,11 @@
 const UrlApiMeals = 'https://food-app-dbriceno10.vercel.app/api/meals';
 const UrlApiOrders = 'https://food-app-dbriceno10.vercel.app/api/orders';
-const UrlApiRegister = 'https://food-app-dbriceno10.vercel.app/api/auth/register';
+const UrlApiRegister =
+  'https://food-app-dbriceno10.vercel.app/api/auth/register';
 const UrlApiLogin = 'https://food-app-dbriceno10.vercel.app/api/auth/login';
 const UrlApiMe = 'https://food-app-dbriceno10.vercel.app/api/auth/me';
 let mealsState = [];
-
+let user = {};
 let route = 'login'; //login, register,orders
 
 const stringToHTML = (string) => {
@@ -54,12 +55,13 @@ const initializeForm = () => {
         text: 'Debe seleccionar un plato',
         icon: 'error',
       });
+      submit.removeAttribute('disabled');
       return errorMessage;
       // return alert('Debe seleccionar un plato');
     }
     const order = {
       meal_id: mealIdValue,
-      user_id: 'id_de_prueba2',
+      user_id: user._id,
     };
 
     fetch(UrlApiOrders, {
@@ -107,6 +109,7 @@ const initializeData = () => {
 const renderApp = () => {
   const token = localStorage.getItem('token');
   if (token) {
+    user = JSON.parse(localStorage.getItem('user')); //La info en el local storage viene como un string, por lo que debemos parsearlo para transformarlo en un json
     return renderOrders();
   }
   renderLogin();
@@ -153,7 +156,11 @@ const renderLogin = () => {
         });
       })
       .then((element) => element.json())
-      .then((user) => console.log(user));
+      .then((fetchedUser) => {
+        localStorage.setItem('user', JSON.stringify(fetchedUser));
+        user = fetchedUser;
+        renderOrders();
+      });
   };
 };
 
