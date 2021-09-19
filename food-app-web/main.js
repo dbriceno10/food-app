@@ -141,6 +141,16 @@ const renderLogin = () => {
       body: JSON.stringify({ email, password }),
     })
       .then((element) => element.json())
+      .catch((error) => {
+        console.log(error);
+        const errorMessage = swal({
+          title: 'Error',
+          text: 'usuario y/o contraseña inválida',
+          icon: 'error',
+        });
+        return errorMessage;
+        // alert('usuario y/o contraseña inválida');
+      })
       .then((response) => {
         localStorage.setItem('token', response.token);
         route = 'orders';
