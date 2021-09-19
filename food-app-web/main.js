@@ -202,6 +202,13 @@ const renderLogin = () => {
           });
           return errorMessage;
           // alert("el usuario ya existe")
+        } else {
+          const errorMessage = swal({
+            title: 'Ok',
+            text: 'Usuario creado con éxito',
+            icon: 'success',
+          });
+          return errorMessage;
         }
       })
       // renderOrders();
