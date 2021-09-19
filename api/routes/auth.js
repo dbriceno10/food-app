@@ -14,7 +14,7 @@ const signToken = (_id) => {
 };
 
 router.post('/register', (request, response) => {
-  const { email, password } = request.body;
+  const { username, email, password } = request.body;
   crypto.randomBytes(16, (error, salt) => {
     const newSalt = salt.toString('base64'); //salt viene como un dato tipo buffer, lo convertimos en un string, pasando el argumento base64, esto lo que hará será devolvernos una cadena muy larga
     crypto.pbkdf2(password, newSalt, 10000, 64, 'sha1', (error, key) => {
@@ -26,6 +26,7 @@ router.post('/register', (request, response) => {
             return response.send('Usuario  ya existe');
           }
           Users.create({
+            username,
             email,
             password: encryptedPassword,
             salt: newSalt,
