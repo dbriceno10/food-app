@@ -47,11 +47,11 @@ ul {
   background-color: #ccc;
 }
 
-#submit:hover {
+#submit, .btn:hover {
   background-color: #32a4d4;
 }
 
-#submit:active {
+#submit, .btn:active {
   background-color: #17495e;
 }
 

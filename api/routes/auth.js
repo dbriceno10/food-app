@@ -23,16 +23,14 @@ router.post('/register', (request, response) => {
         .exec() //Va a buscar a un usuario por su email, luego ejecuta (exec) la consulta
         .then((user) => {
           if (user) {
-            return response.send('Usuario  ya existe');
+            return response.status(400).send(user);//modificamos ya existe por un status 400
           }
           Users.create({
             username,
             email,
             password: encryptedPassword,
             salt: newSalt,
-          }).then(() => {
-            response.send('usuario creado con éxito');
-          });
+          }).then((x) => response.status(201).send(x));//modificamos el usario creado por un status 201
         });
     });
   });

@@ -113,7 +113,7 @@ const renderApp = () => {
     user = JSON.parse(localStorage.getItem('user')); //La info en el local storage viene como un string, por lo que debemos parsearlo para transformarlo en un json
     return renderOrders();
   }
-  renderLogin();
+  // renderLogin();
 };
 
 const renderOrders = () => {
@@ -174,6 +174,42 @@ const renderLogin = () => {
       });
   };
 };
+
+// const renderRegister = () => {
+  // registerTemplate = document.getElementById('register-template');
+  // document.getElementById('app').innerHTML = registerTemplate.innerHTML;
+
+  const registerForm = document.getElementById('register-form');
+  registerForm.onsubmit = (event) => {
+    event.preventDefault();
+    const username = document.getElementById('username').value
+    const email = document.getElementById('emailR').value;
+    const password = document.getElementById('passwordR').value;
+
+    fetch(UrlApiRegister, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password }),
+    })
+      .then((element) => {
+        if(element.status !== 201) {
+          const errorMessage = swal({
+            title: 'Error',
+            text: 'el usuario ya existe',
+            icon: 'error',
+          });
+          return errorMessage;
+          // alert("el usuario ya existe")
+        }
+      })
+      // renderOrders();
+  };
+// };
+
+
+
 
 window.onload = () => {
   renderApp();
