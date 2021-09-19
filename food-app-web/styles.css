@@ -47,12 +47,20 @@ ul {
   background-color: #ccc;
 }
 
-#submit, .btn:hover {
+#submit:hover {
+  background-color: #32a4d4;
+}
+.btn:hover{
   background-color: #32a4d4;
 }
 
-#submit, .btn:active {
+#submit:active {
   background-color: #17495e;
+}
+
+.btn:active {
+  background-color: #17495e;
+  
 }
 
 #meals-list li {
@@ -69,6 +77,7 @@ ul {
   margin-top: 100px;
   padding: 15px;
   padding-bottom: 30px;
+  border-radius: 8px;
 }
 
 .login-form p {
@@ -110,4 +119,15 @@ form input {
 /* Esta regla es para eliminar un elemento div que está metiendo el live server */
 #scrnli_recorder_root {
   display: none;
+}
+
+#register-btn {
+  border: none;
+  background-color: #fff;
+  padding: 10px 15px;
+  margin-top: 20px;
+}
+
+#register-btn:hover {
+  color: #32a4d4;
 }

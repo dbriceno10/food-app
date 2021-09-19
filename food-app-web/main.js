@@ -113,7 +113,7 @@ const renderApp = () => {
     user = JSON.parse(localStorage.getItem('user')); //La info en el local storage viene como un string, por lo que debemos parsearlo para transformarlo en un json
     return renderOrders();
   }
-  // renderLogin();
+  renderLogin();
 };
 
 const renderOrders = () => {
@@ -175,9 +175,9 @@ const renderLogin = () => {
   };
 };
 
-// const renderRegister = () => {
-  // registerTemplate = document.getElementById('register-template');
-  // document.getElementById('app').innerHTML = registerTemplate.innerHTML;
+const renderRegister = () => {
+  registerTemplate = document.getElementById('register-template');
+  document.getElementById('app').innerHTML = registerTemplate.innerHTML;
 
   const registerForm = document.getElementById('register-form');
   registerForm.onsubmit = (event) => {
@@ -213,7 +213,7 @@ const renderLogin = () => {
       })
       // renderOrders();
   };
-// };
+};
 
 
 

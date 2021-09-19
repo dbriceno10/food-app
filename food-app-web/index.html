@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id=""></div>
-    <div id="app">
+    <div id="app"></div>
+    <template id="register-template">
       <div class="form-main">
         <p class="form-title">Register</p>
         <form action="" id="register-form" class="login-form">
@@ -31,7 +31,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </template>
     <template id="login-template">
       <div class="form-main">
         <p class="form-title">Login</p>
@@ -46,6 +46,7 @@
           </div>
           <div>
             <button class="btn block">Send</button>
+            <button id="register-btn" class="block">Create New Account</button>
             <!-- <input type="submit" value="Send" /> -->
           </div>
         </form>
