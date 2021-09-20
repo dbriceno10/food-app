@@ -57,7 +57,6 @@ const initializeForm = () => {
       });
       submit.removeAttribute('disabled');
       return errorMessage;
-      // return alert('Debe seleccionar un plato');
     }
     const order = {
       meal_id: mealIdValue,
@@ -124,9 +123,12 @@ const renderOrders = () => {
 };
 
 const renderLogin = () => {
-  loginTemplate = document.getElementById('login-template');
+  const loginTemplate = document.getElementById('login-template');
   document.getElementById('app').innerHTML = loginTemplate.innerHTML;
-
+  const btnCNA = document.getElementById('register-btn');
+  btnCNA.addEventListener('click', () => {
+    renderRegister();
+  });
   const loginForm = document.getElementById('login-form');
   loginForm.onsubmit = (event) => {
     event.preventDefault();
@@ -149,7 +151,6 @@ const renderLogin = () => {
           icon: 'error',
         });
         return errorMessage;
-        // alert('usuario y/o contraseña inválida');
       })
       .then((response) => {
         localStorage.setItem('token', response.token);
@@ -176,13 +177,16 @@ const renderLogin = () => {
 };
 
 const renderRegister = () => {
-  registerTemplate = document.getElementById('register-template');
+  const registerTemplate = document.getElementById('register-template');
   document.getElementById('app').innerHTML = registerTemplate.innerHTML;
-
+  const btnL = document.getElementById('login-btn');
+  btnL.addEventListener('click', () => {
+    renderLogin();
+  });
   const registerForm = document.getElementById('register-form');
   registerForm.onsubmit = (event) => {
     event.preventDefault();
-    const username = document.getElementById('username').value
+    const username = document.getElementById('username').value;
     const email = document.getElementById('emailR').value;
     const password = document.getElementById('passwordR').value;
 
@@ -192,31 +196,29 @@ const renderRegister = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username, email, password }),
-    })
-      .then((element) => {
-        if(element.status !== 201) {
-          const errorMessage = swal({
-            title: 'Error',
-            text: 'el usuario ya existe',
-            icon: 'error',
-          });
-          return errorMessage;
-          // alert("el usuario ya existe")
-        } else {
-          const errorMessage = swal({
-            title: 'Ok',
-            text: 'Usuario creado con éxito',
-            icon: 'success',
-          });
-          return errorMessage;
-        }
-      })
-      // renderOrders();
+    }).then((element) => {
+      if (element.status !== 201) {
+        const errorMessage = swal({
+          title: 'Error',
+          text: 'el usuario ya existe',
+          icon: 'error',
+        });
+        return errorMessage;
+      } else {
+        const errorMessage = swal({
+          title: 'Ok',
+          text: 'Usuario creado con éxito',
+          icon: 'success',
+        }).then(() => {
+          setTimeout(() => {
+            renderLogin();
+          }, 1000);
+        });
+        return errorMessage;
+      }
+    });
   };
 };
-
-
-
 
 window.onload = () => {
   renderApp();

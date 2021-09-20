@@ -121,13 +121,20 @@ form input {
   display: none;
 }
 
-#register-btn {
+#register-btn, #login-btn {
   border: none;
   background-color: #fff;
   padding: 10px 15px;
-  margin-top: 20px;
+  margin-top: 25px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 18px;
 }
 
 #register-btn:hover {
+  color: #32a4d4;
+}
+
+#login-btn:hover {
   color: #32a4d4;
 }
