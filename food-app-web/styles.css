@@ -13,12 +13,12 @@
 }
 
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
   /* background-color: #eee; */
-  background-color:var(--soft-orange);
+  background-color: var(--soft-orange);
 }
 
 #app {
@@ -116,7 +116,8 @@ ul {
 
 form input {
   width: calc(100% - 10px);
-  height: 24px;
+  /* height: 24px; */
+  height: 30px;
   padding-left: 5px;
   /* background-color: #dedede; */
   background-color: #eee;
@@ -124,7 +125,6 @@ form input {
   border-radius: 8px;
   color: #000;
   box-shadow: 0px 4px 8px rgba(89, 73, 30, 0.16);
-
 }
 
 .btn {
@@ -163,6 +163,7 @@ form input {
   text-decoration: none;
   text-align: center;
   font-size: 18px;
+  font-weight: bold;
 }
 
 #register-btn:hover {
@@ -186,4 +187,10 @@ form input {
 
 h2 {
   text-align: center;
+}
+
+.form-placeholder {
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 5px;
 }
