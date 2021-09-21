@@ -8,6 +8,36 @@ let mealsState = [];
 let user = {};
 let route = 'login'; //login, register,orders
 
+const checkLocalStorage = () => {
+  if(localStorage.getItem("token") === "undefined" || null) {
+    localStorage.removeItem("token")
+  }
+  if(localStorage.getItem("user") === "undefined" || null) {
+    localStorage.removeItem("user")
+  }
+}
+
+const btnLogout = document.getElementById("logout-btn") 
+btnLogout.addEventListener("click", () => {
+  localStorage.removeItem("token")
+  localStorage.removeItem("user")
+  setTimeout(() => {
+    renderLogin()
+  }, 1000)
+})
+
+const hideLogoutBtn = ()=> {
+  checkLocalStorage()
+  const logoutW = document.getElementById("logout")
+  const testUser = localStorage.getItem("user")
+  const testToken = localStorage.getItem("token")
+  if(testUser === null || testToken === null) {
+    logoutW.classList.add("hidden")
+  } else {
+    logoutW.classList.remove("hidden")
+  }
+}
+
 const stringToHTML = (string) => {
   const parser = new DOMParser();
   const document = parser.parseFromString(string, 'text/html');
@@ -36,7 +66,7 @@ const renderMeals = (meal) => {
 
 const renderOrder = (order, meals) => {
   const meal = meals.find((elementMeal) => elementMeal._id === order.meal_id);
-  const view = `<li data-id=${order._id}>${meal.name} - ${order.user_id}</li>`;
+  const view = `<li data-id=${order._id}>${meal.name} - User Id: ${order.user_id}</li>`;
   const element = stringToHTML(view);
   return element;
 };
@@ -52,7 +82,7 @@ const initializeForm = () => {
     if (!mealIdValue) {
       const errorMessage = swal({
         title: 'Error',
-        text: 'Debe seleccionar un plato',
+        text: 'You must select a meal',
         icon: 'error',
       });
       submit.removeAttribute('disabled');
@@ -101,12 +131,12 @@ const initializeData = () => {
           );
           ordersList.removeChild(ordersList.firstElementChild);
           listOrders.forEach((element) => ordersList.appendChild(element));
-          // console.log(dataOrders);
         });
     });
 };
 
 const renderApp = () => {
+  hideLogoutBtn()
   const token = localStorage.getItem('token');
   if (token) {
     user = JSON.parse(localStorage.getItem('user')); //La info en el local storage viene como un string, por lo que debemos parsearlo para transformarlo en un json
@@ -116,6 +146,7 @@ const renderApp = () => {
 };
 
 const renderOrders = () => {
+  hideLogoutBtn()
   const ordersView = document.getElementById('orders-view');
   document.getElementById('app').innerHTML = ordersView.innerHTML;
   initializeForm();
@@ -123,6 +154,7 @@ const renderOrders = () => {
 };
 
 const renderLogin = () => {
+hideLogoutBtn()
   const loginTemplate = document.getElementById('login-template');
   document.getElementById('app').innerHTML = loginTemplate.innerHTML;
   const btnCNA = document.getElementById('register-btn');
@@ -147,7 +179,7 @@ const renderLogin = () => {
         console.log(error);
         const errorMessage = swal({
           title: 'Error',
-          text: 'usuario y/o contraseña inválida',
+          text: 'Invalid username and / or password',
           icon: 'error',
         });
         return errorMessage;
@@ -177,6 +209,7 @@ const renderLogin = () => {
 };
 
 const renderRegister = () => {
+  hideLogoutBtn()
   const registerTemplate = document.getElementById('register-template');
   document.getElementById('app').innerHTML = registerTemplate.innerHTML;
   const btnL = document.getElementById('login-btn');
@@ -200,14 +233,14 @@ const renderRegister = () => {
       if (element.status !== 201) {
         const errorMessage = swal({
           title: 'Error',
-          text: 'el usuario ya existe',
+          text: 'User already exists',
           icon: 'error',
         });
         return errorMessage;
       } else {
         const errorMessage = swal({
           title: 'Ok',
-          text: 'Usuario creado con éxito',
+          text: 'User created successfully',
           icon: 'success',
         }).then(() => {
           setTimeout(() => {

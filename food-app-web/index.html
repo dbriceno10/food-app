@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div id="logout" class="hidden"><button id="logout-btn" class="btn">Logout</button></div>
     <div id="app"></div>
     <template id="register-template">
       <div class="form-main">
@@ -15,15 +16,15 @@
         <form action="" id="register-form" class="login-form">
           <div>
             <p>Username</p>
-            <input id="username" type="text" placeholder="Username" />
+            <input id="username" type="text" placeholder="Username" required />
           </div>
           <div>
             <p>Email</p>
-            <input id="emailR" type="text" placeholder="Email" />
+            <input id="emailR" type="email" placeholder="Email" required />
           </div>
           <div>
             <p>Password</p>
-            <input id="passwordR" type="password" placeholder="Password" />
+            <input id="passwordR" type="password" placeholder="Password" required />
           </div>
           <div>
             <button class="btn block">Send</button>
@@ -38,11 +39,11 @@
         <form action="" id="login-form" class="login-form">
           <div>
             <p>Email</p>
-            <input id="email" type="text" placeholder="Email" />
+            <input id="email" type="email" placeholder="Email" required />
           </div>
           <div>
             <p>Password</p>
-            <input id="password" type="password" placeholder="Password" />
+            <input id="password" type="password" placeholder="Password" required />
           </div>
           <div>
             <button class="btn block">Send</button>
@@ -55,6 +56,7 @@
     <!-- Todo lo que se encuentre dentro de una etiqueta template, no se va a mostrar, a menos que se cumpla una condición para que así sea, esto se utiliza para crear vistas o plantillas -->
     <template id="orders-view">
       <div id="meals">
+        <h2>Meals</h2>
         <ul id="meals-list">
           <p>Loading...</p>
         </ul>
@@ -65,12 +67,13 @@
         </form>
       </div>
       <div id="orders">
+        <h2>Orders</h2>
         <ul id="orders-list">
           <p>Loading...</p>
         </ul>
       </div>
     </template>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="./main.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
