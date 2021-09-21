@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food-App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    /> -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -60,12 +70,10 @@
           <div>
             <button class="btn block">Send</button>
             <p id="register-btn">Create New Account</p>
-            <!-- <input type="submit" value="Send" /> -->
           </div>
         </form>
       </div>
     </template>
-    <!-- Todo lo que se encuentre dentro de una etiqueta template, no se va a mostrar, a menos que se cumpla una condición para que así sea, esto se utiliza para crear vistas o plantillas -->
     <template id="orders-view">
       <div id="meals">
         <h2>Meals</h2>
@@ -73,7 +81,7 @@
           <p>Loading...</p>
         </ul>
         <form id="order" action="">
-          <input type="hidden" name="" id="meals-id" />
+          <input type="hidden" id="meals-id" />
           <button id="submit" disabled>Send</button>
         </form>
       </div>

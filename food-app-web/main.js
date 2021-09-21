@@ -203,7 +203,7 @@ const renderLogin = () => {
       })
       .then((element) => element.json())
       .then((fetchedUser) => {
-        localStorage.setItem('user', JSON.stringify(fetchedUser));
+        localStorage.setItem('user', JSON.stringify(fetchedUser._id));
         user = fetchedUser;
         renderOrders();
       });

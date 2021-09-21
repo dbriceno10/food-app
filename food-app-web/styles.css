@@ -1,5 +1,24 @@
+:root {
+  /* colores */
+  --bitcoin-orange: #f7931a;
+  --soft-blue: #e7f5ff;
+  --warm-black: #201e1c;
+  --black: #282623;
+  --secondary-blue: #1a9af7;
+  --secundary-orange: #ff9536;
+  --gray: #bababa;
+  --just-white: #fff;
+  --soft-orange: #ffe9d5;
+  --off-white: #faf8f7;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+}
+
 body {
-  background-color: #eee;
+  /* background-color: #eee; */
+  background-color:var(--soft-orange);
 }
 
 #app {
@@ -22,10 +41,12 @@ body {
 
 #meals {
   margin-left: 0px;
+  border-radius: 8px;
 }
 
 #orders {
   margin-right: 0px;
+  border-radius: 8px;
 }
 
 ul {
@@ -85,6 +106,7 @@ ul {
   padding: 15px;
   padding-bottom: 30px;
   border-radius: 8px;
+  /* background-color: var(--soft-orange); */
 }
 
 .login-form p {
@@ -96,10 +118,13 @@ form input {
   width: calc(100% - 10px);
   height: 24px;
   padding-left: 5px;
-  background-color: #dedede;
+  /* background-color: #dedede; */
+  background-color: #eee;
   border: none;
   border-radius: 8px;
   color: #000;
+  box-shadow: 0px 4px 8px rgba(89, 73, 30, 0.16);
+
 }
 
 .btn {
