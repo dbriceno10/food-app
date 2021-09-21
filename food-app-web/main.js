@@ -9,34 +9,36 @@ let user = {};
 let route = 'login'; //login, register,orders
 
 const checkLocalStorage = () => {
-  if(localStorage.getItem("token") === "undefined" || null) {
-    localStorage.removeItem("token")
+  const checkToken = localStorage.getItem('token');
+  const checkUser = localStorage.getItem('user');
+  if (checkToken == 'undefined') {
+    localStorage.removeItem('token');
   }
-  if(localStorage.getItem("user") === "undefined" || null) {
-    localStorage.removeItem("user")
+  if (checkUser == 'undefined') {
+    localStorage.removeItem('user');
   }
-}
+};
 
-const btnLogout = document.getElementById("logout-btn") 
-btnLogout.addEventListener("click", () => {
-  localStorage.removeItem("token")
-  localStorage.removeItem("user")
+const btnLogout = document.getElementById('logout-btn');
+btnLogout.addEventListener('click', () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
   setTimeout(() => {
-    renderLogin()
-  }, 1000)
-})
+    renderLogin();
+  }, 1000);
+});
 
-const hideLogoutBtn = ()=> {
-  checkLocalStorage()
-  const logoutW = document.getElementById("logout")
-  const testUser = localStorage.getItem("user")
-  const testToken = localStorage.getItem("token")
-  if(testUser === null || testToken === null) {
-    logoutW.classList.add("hidden")
+const hideLogoutBtn = () => {
+  checkLocalStorage();
+  const logoutW = document.getElementById('logout');
+  const testUser = localStorage.getItem('user');
+  const testToken = localStorage.getItem('token');
+  if (testUser === null || testToken === null) {
+    logoutW.classList.add('hidden');
   } else {
-    logoutW.classList.remove("hidden")
+    logoutW.classList.remove('hidden');
   }
-}
+};
 
 const stringToHTML = (string) => {
   const parser = new DOMParser();
@@ -136,7 +138,7 @@ const initializeData = () => {
 };
 
 const renderApp = () => {
-  hideLogoutBtn()
+  hideLogoutBtn();
   const token = localStorage.getItem('token');
   if (token) {
     user = JSON.parse(localStorage.getItem('user')); //La info en el local storage viene como un string, por lo que debemos parsearlo para transformarlo en un json
@@ -146,7 +148,7 @@ const renderApp = () => {
 };
 
 const renderOrders = () => {
-  hideLogoutBtn()
+  hideLogoutBtn();
   const ordersView = document.getElementById('orders-view');
   document.getElementById('app').innerHTML = ordersView.innerHTML;
   initializeForm();
@@ -154,7 +156,7 @@ const renderOrders = () => {
 };
 
 const renderLogin = () => {
-hideLogoutBtn()
+  hideLogoutBtn();
   const loginTemplate = document.getElementById('login-template');
   document.getElementById('app').innerHTML = loginTemplate.innerHTML;
   const btnCNA = document.getElementById('register-btn');
@@ -209,7 +211,7 @@ hideLogoutBtn()
 };
 
 const renderRegister = () => {
-  hideLogoutBtn()
+  hideLogoutBtn();
   const registerTemplate = document.getElementById('register-template');
   document.getElementById('app').innerHTML = registerTemplate.innerHTML;
   const btnL = document.getElementById('login-btn');

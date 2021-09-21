@@ -50,7 +50,7 @@ ul {
 #submit:hover {
   background-color: #32a4d4;
 }
-.btn:hover{
+.btn:hover {
   background-color: #32a4d4;
 }
 
@@ -60,10 +60,9 @@ ul {
 
 .btn:active {
   background-color: #17495e;
-  
 }
 
-#logout-btn:hover{
+#logout-btn:hover {
   background-color: #32a4d4;
 }
 
@@ -129,7 +128,9 @@ form input {
   display: none;
 }
 
-#register-btn, #login-btn, #logout-btn {
+#register-btn,
+#login-btn,
+#logout-btn {
   border: none;
   /* background-color: #fff; */
   padding: 10px 15px;

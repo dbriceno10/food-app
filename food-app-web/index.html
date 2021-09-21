@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="logout" class="hidden"><button id="logout-btn" class="btn">Logout</button></div>
+    <div id="logout" class="hidden">
+      <button id="logout-btn" class="btn">Logout</button>
+    </div>
     <div id="app"></div>
     <template id="register-template">
       <div class="form-main">
@@ -24,7 +26,12 @@
           </div>
           <div>
             <p>Password</p>
-            <input id="passwordR" type="password" placeholder="Password" required />
+            <input
+              id="passwordR"
+              type="password"
+              placeholder="Password"
+              required
+            />
           </div>
           <div>
             <button class="btn block">Send</button>
@@ -43,7 +50,12 @@
           </div>
           <div>
             <p>Password</p>
-            <input id="password" type="password" placeholder="Password" required />
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              required
+            />
           </div>
           <div>
             <button class="btn block">Send</button>
@@ -62,7 +74,6 @@
         </ul>
         <form id="order" action="">
           <input type="hidden" name="" id="meals-id" />
-          <!-- <input id="submit" type="submit" value="Submit" disabled /> -->
           <button id="submit" disabled>Send</button>
         </form>
       </div>
