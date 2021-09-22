@@ -7,6 +7,7 @@ const UrlApiMe = 'https://food-app-dbriceno10.vercel.app/api/auth/me';
 let mealsState = [];
 let user = {};
 let route = 'login'; //login, register,orders
+const header = document.getElementById('header');
 
 const checkLocalStorage = () => {
   const checkToken = localStorage.getItem('token');
@@ -148,6 +149,7 @@ const renderApp = () => {
 };
 
 const renderOrders = () => {
+  header.classList.add('hidden');
   hideLogoutBtn();
   const ordersView = document.getElementById('orders-view');
   document.getElementById('app').innerHTML = ordersView.innerHTML;
@@ -157,6 +159,7 @@ const renderOrders = () => {
 
 const renderLogin = () => {
   hideLogoutBtn();
+  header.classList.remove('hidden');
   const loginTemplate = document.getElementById('login-template');
   document.getElementById('app').innerHTML = loginTemplate.innerHTML;
   const btnCNA = document.getElementById('register-btn');
@@ -214,6 +217,7 @@ const renderLogin = () => {
 };
 
 const renderRegister = () => {
+  header.classList.remove('hidden');
   hideLogoutBtn();
   const registerTemplate = document.getElementById('register-template');
   document.getElementById('app').innerHTML = registerTemplate.innerHTML;
