@@ -24,6 +24,8 @@ body {
 #app {
   /*Ahora será app donde se rendericen los template, en lugar de body*/
   display: flex;
+  margin: 0 auto;
+  /* flex-direction: column; */
 }
 
 #app div {
@@ -31,8 +33,10 @@ body {
   flex-grow: 1;
   background-color: #fff;
   margin: 5px;
-  margin-top: 0;
+  /* margin-top: 0; */
   padding: 10px;
+  margin: 0 auto;
+  line-height: 28px;
 }
 
 /* body div:first-child {
@@ -40,28 +44,58 @@ body {
 } */
 
 #meals {
-  margin-left: 0px;
+  /* margin-left: 0px; */
   border-radius: 8px;
+  padding: 10px;
+  max-width: 400px;
+  min-width: 300px;
 }
 
 #orders {
-  margin-right: 0px;
+  /* margin-right: 0px; */
   border-radius: 8px;
+  padding: 10px;
+  max-width: 400px;
+  min-width: 300px;
 }
 
-ul {
-  list-style-type: none;
+#orders ul {
+  list-style: none;
 }
+
+@media (max-width: 874px) {
+  #app {
+    flex-direction: column;
+  }
+#app.div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+  }
+  div #meals {
+    margin-bottom: 40px;
+  }
+}
+/* ul {
+  list-style-type: none;
+} */
 
 #submit {
   /* background-color: #17495e; */
   background-color: #2a91bd;
+  width: 80px;
   color: #fff;
   padding: 10px 15px;
   border: solid 0px;
   border-radius: 8px;
   margin: 15px;
   margin-left: 38px;
+  align-content: center;
+}
+
+#submit-container {
+  display: flex;
+  justify-content: center;
 }
 
 #submit:disabled {
@@ -100,11 +134,12 @@ ul {
 }
 
 #app .form-main {
-  max-width: 300px;
+  max-width: 350px;
+  min-width: 300px;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 15px;
-  padding-bottom: 30px;
+  padding-bottom: 50px;
   border-radius: 8px;
   /* background-color: var(--soft-orange); */
 }
@@ -177,7 +212,7 @@ form input {
 #logout {
   text-align: end;
   margin-top: 40px;
-  margin-right: 15px;
+  margin-right: 20px;
   margin-bottom: 40px;
 }
 
