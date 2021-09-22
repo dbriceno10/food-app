@@ -164,11 +164,13 @@ const renderLogin = () => {
     renderRegister();
   });
   const loginForm = document.getElementById('login-form');
+  const submitL = document.getElementById('submit-login');
+  submitL.removeAttribute('disabled');
   loginForm.onsubmit = (event) => {
     event.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-
+    submitL.setAttribute('disabled', true);
     fetch(UrlApiLogin, {
       method: 'POST',
       headers: {
@@ -184,6 +186,7 @@ const renderLogin = () => {
           text: 'Invalid username and / or password',
           icon: 'error',
         });
+        submitL.removeAttribute('disabled');
         return errorMessage;
       })
       .then((response) => {
@@ -219,11 +222,14 @@ const renderRegister = () => {
     renderLogin();
   });
   const registerForm = document.getElementById('register-form');
+  const submitR = document.getElementById('submit-register');
+  submitR.removeAttribute('disabled');
   registerForm.onsubmit = (event) => {
     event.preventDefault();
     const username = document.getElementById('username').value;
     const email = document.getElementById('emailR').value;
     const password = document.getElementById('passwordR').value;
+    submitR.setAttribute('disabled', true);
 
     fetch(UrlApiRegister, {
       method: 'POST',
@@ -238,9 +244,10 @@ const renderRegister = () => {
           text: 'User already exists',
           icon: 'error',
         });
+        submitR.removeAttribute('disabled');
         return errorMessage;
       } else {
-        const errorMessage = swal({
+        const successMessage = swal({
           title: 'Ok',
           text: 'User created successfully',
           icon: 'success',
@@ -249,7 +256,8 @@ const renderRegister = () => {
             renderLogin();
           }, 1000);
         });
-        return errorMessage;
+        submitR.removeAttribute('disabled');
+        return successMessage;
       }
     });
   };

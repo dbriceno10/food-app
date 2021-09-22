@@ -67,7 +67,7 @@ body {
   #app {
     flex-direction: column;
   }
-#app.div {
+  #app.div {
     padding-top: 20px;
     padding-bottom: 20px;
     margin-top: 20px;
@@ -99,6 +99,14 @@ body {
 }
 
 #submit:disabled {
+  background-color: #ccc;
+}
+
+#submit-login:disabled {
+  background-color: #ccc;
+}
+
+#submit-register:disabled {
   background-color: #ccc;
 }
 
