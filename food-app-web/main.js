@@ -164,7 +164,9 @@ const renderLogin = () => {
   document.getElementById('app').innerHTML = loginTemplate.innerHTML;
   const btnCNA = document.getElementById('register-btn');
   btnCNA.addEventListener('click', () => {
-    renderRegister();
+    setTimeout(() => {
+      renderRegister();
+    }, 500);
   });
   const loginForm = document.getElementById('login-form');
   const submitL = document.getElementById('submit-login');
@@ -183,14 +185,26 @@ const renderLogin = () => {
     })
       .then((element) => element.json())
       .catch((error) => {
-        console.log(error);
-        const errorMessage = swal({
-          title: 'Error',
-          text: 'Invalid username and / or password',
-          icon: 'error',
-        });
-        submitL.removeAttribute('disabled');
-        return errorMessage;
+        console.log(error.toString());
+        const tokenError =
+          'SyntaxError: Unexpected token u in JSON at position 0';
+        if (tokenError === error.toString()) {
+          const errorMessage = swal({
+            title: 'Error',
+            text: 'Invalid username and / or password',
+            icon: 'error',
+          });
+          submitL.removeAttribute('disabled');
+          return errorMessage;
+        } else {
+          const errorMessage = swal({
+            title: 'Opps',
+            text: 'An unexpected error has occurred, please try again',
+            icon: 'error',
+          });
+          submitR.removeAttribute('disabled');
+          return errorMessage;
+        }
       })
       .then((response) => {
         localStorage.setItem('token', response.token);
@@ -223,7 +237,9 @@ const renderRegister = () => {
   document.getElementById('app').innerHTML = registerTemplate.innerHTML;
   const btnL = document.getElementById('login-btn');
   btnL.addEventListener('click', () => {
-    renderLogin();
+    setTimeout(() => {
+      renderLogin();
+    }, 500);
   });
   const registerForm = document.getElementById('register-form');
   const submitR = document.getElementById('submit-register');
@@ -241,29 +257,48 @@ const renderRegister = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username, email, password }),
-    }).then((element) => {
-      if (element.status !== 201) {
+    })
+      .then((element) => {
+        if (element.status === 201) {
+          const successMessage = swal({
+            title: 'Ok',
+            text: 'User created successfully',
+            icon: 'success',
+          }).then(() => {
+            setTimeout(() => {
+              renderLogin();
+            }, 1000);
+          });
+          submitR.removeAttribute('disabled');
+          return successMessage;
+        } else if (element.status === 400) {
+          const errorMessage = swal({
+            title: 'Error',
+            text: 'User already exists',
+            icon: 'error',
+          });
+          submitR.removeAttribute('disabled');
+          return errorMessage;
+        } else {
+          const errorMessage = swal({
+            title: 'Opps',
+            text: 'An unexpected error has occurred, please try again',
+            icon: 'error',
+          });
+          submitR.removeAttribute('disabled');
+          return errorMessage;
+        }
+      })
+      .catch((error) => {
+        console.error(error);
         const errorMessage = swal({
-          title: 'Error',
-          text: 'User already exists',
+          title: 'Opps',
+          text: 'An unexpected error has occurred, please try again',
           icon: 'error',
         });
         submitR.removeAttribute('disabled');
         return errorMessage;
-      } else {
-        const successMessage = swal({
-          title: 'Ok',
-          text: 'User created successfully',
-          icon: 'success',
-        }).then(() => {
-          setTimeout(() => {
-            renderLogin();
-          }, 1000);
-        });
-        submitR.removeAttribute('disabled');
-        return successMessage;
-      }
-    });
+      });
   };
 };
 
