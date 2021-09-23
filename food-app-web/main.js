@@ -185,7 +185,7 @@ const renderLogin = () => {
     })
       .then((element) => element.json())
       .catch((error) => {
-        console.log(error.toString());
+        console.log(error);
         const tokenError =
           'SyntaxError: Unexpected token u in JSON at position 0';
         if (tokenError === error.toString()) {
