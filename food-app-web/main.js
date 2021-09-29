@@ -193,16 +193,14 @@ const renderLogin = () => {
             title: 'Error',
             text: 'Invalid username and / or password',
             icon: 'error',
-          });
-          submitL.removeAttribute('disabled');
+          }).then(submitL.removeAttribute('disabled'));
           return errorMessage;
         } else {
           const errorMessage = swal({
             title: 'Opps',
             text: 'An unexpected error has occurred, please try again',
             icon: 'error',
-          });
-          submitR.removeAttribute('disabled');
+          }).then(submitL.removeAttribute('disabled'));
           return errorMessage;
         }
       })
@@ -268,24 +266,22 @@ const renderRegister = () => {
             setTimeout(() => {
               renderLogin();
             }, 1000);
+            submitR.removeAttribute('disabled');
           });
-          submitR.removeAttribute('disabled');
           return successMessage;
         } else if (element.status === 400) {
           const errorMessage = swal({
             title: 'Error',
             text: 'User already exists',
             icon: 'error',
-          });
-          submitR.removeAttribute('disabled');
+          }).then(() => submitR.removeAttribute('disabled'));
           return errorMessage;
         } else {
           const errorMessage = swal({
             title: 'Opps',
             text: 'An unexpected error has occurred, please try again',
             icon: 'error',
-          });
-          submitR.removeAttribute('disabled');
+          }).then(() => submitR.removeAttribute('disabled'));
           return errorMessage;
         }
       })
@@ -295,8 +291,7 @@ const renderRegister = () => {
           title: 'Opps',
           text: 'An unexpected error has occurred, please try again',
           icon: 'error',
-        });
-        submitR.removeAttribute('disabled');
+        }).then(() => submitR.removeAttribute('disabled'));
         return errorMessage;
       });
   };
