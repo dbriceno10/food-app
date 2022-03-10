@@ -8,6 +8,7 @@ const Users = mongoose.model(
     password: String,
     salt: String, //salt es un string que vamos a utilizar para encriptar nuestra contraseña
     role: { type: String, default: 'user' },//podría ser también un admin, por ejemplo
+    date: { type: Date, default: Date.now },
   })
 );
 
