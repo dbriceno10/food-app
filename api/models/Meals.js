@@ -5,6 +5,7 @@ const Meals = mongoose.model(
   new Schema({
     name: String,
     desc: String,
+    date: { type: Date, default: Date.now },
   })
 );
 
